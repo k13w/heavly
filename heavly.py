@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from argparse import ArgumentParser
 from requests import get
 
