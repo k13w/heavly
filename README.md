@@ -2,7 +2,7 @@
 Backdoor web in python
 
 ##Apresentação
-    A Backdoor web in python ased on weevely
+    A Backdoor web in python based on weevely
 
 ```
     [+] AUTOR:        Gilmar Silva
@@ -14,9 +14,9 @@ Backdoor web in python
 ```
     git clone https://github.com/HeavenH/heavly
     cd heavly
-    heavly ./heavly.py -u http://localhost/shell.php password
-    python3 heavly.py -u http://localhost/shell.php password
-    heavly.py -u http://localhost/shell.php password
+    heavly ./heavly.py -u "http://localhost/shell.php" "password"
+    python3 heavly.py -u "http://localhost/shell.php" "password"
+    heavly.py -u "http://localhost/shell.php" "password"
 ```
 
 ![img1](back.png)
