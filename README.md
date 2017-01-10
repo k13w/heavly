@@ -17,11 +17,9 @@ A web backdoor manager in python, using PHP backdoor, based on weevely
     heavly.py -g "name_of_backdoor" "password of backdoor"
  ```
  
-Connecting to the server:
+###Connecting to the server:
  ```
     heavly ./heavly.py -u "http://localhost/shell.php" "password"
     python3 heavly.py -u "http://localhost/shell.php" "password"
     heavly.py -u "http://localhost/shell.php" "password"
 ```
-
-![img1](back.png)
