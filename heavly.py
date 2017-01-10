@@ -27,11 +27,11 @@ if args.generate:
 
     shell_name = str(args.generate)
     shell = shell_name+'.php'
-    opfile = open(shell,'+w')
+    opfile = open(shell, '+w')
     config = ConfigParser()
     config.read_file(open('config.ini'))
 
-    opfile.write(config['DEFAULT']['code'].format(passw=passwd))
+    opfile.write(config['DEFAULT']['code'].replace('{passw}', passwd))
     opfile.close()
     print('Generated file '+shell)
 
