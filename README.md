@@ -12,7 +12,7 @@ A web backdoor manager in python, using PHP backdoor, based on weevely
 
 ###How to generate your backdoor:
 ```
-    heavly ./heavly.py -g "name_of_backdoor" "password of backdoor"
+    ./heavly.py -g "name_of_backdoor" "password of backdoor"
     python3 heavly.py -g "name_of_backdoor" "password of backdoor"
     heavly.py -g "name_of_backdoor" "password of backdoor"
  ```
