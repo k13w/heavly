@@ -1,8 +1,8 @@
-# heavly
+# Heavly
 Backdoor web in python
 
 ##Apresentação
-    A Backdoor web in python based on weevely
+    A web backdoor manager in python, using PHP backdoor, based on weevely
 
 ```
     [+] AUTOR:        Gilmar Silva
