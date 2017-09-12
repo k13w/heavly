@@ -33,7 +33,7 @@ if args.generate:
 
     opfile.write(config['DEFAULT']['code'].replace('{passw}', passwd))
     opfile.close()
-    print('Generated file '+ shell + 'with password' + passwd)
+    print('Generated file '+ shell + ' with password ' + passwd)
 
 
 if args.shell_url:
